@@ -1,0 +1,13 @@
+[project]
+name = "MemCode"
+
+[UI]
+name = "MemCode"
+
+[features]
+multi_modal = false
+unsafe_allow_html = false
+latex = false
+
+[meta]
+generated_by = "0.7.0"

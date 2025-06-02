@@ -1,0 +1,10 @@
+chainlit
+sqlalchemy
+aiosqlite
+openai
+python-dotenv
+alembic
+sentence-transformers
+scikit-learn
+psycopg2-binary
+asyncpg

@@ -1,0 +1,31 @@
+[project]
+name = "MemCode"
+description = "AI-powered function generation with intelligent memory and context retrieval"
+user_env = []
+enable_telemetry = false
+
+[features]
+multi_modal = true
+prompt_playground = true
+unsafe_allow_html = false
+latex = false
+persist_memory = true
+show_readme_as_default = false
+show_chat_profile = false
+show_sidebar = true
+user_message_autoscroll = true
+upload = true
+max_file_size_mb = 10
+accept_all_mime_types = false
+
+[UI]
+cot = "tool_call"
+theme = "dark"
+default_expand_messages = true
+default_collapse_content = false
+hide_cot = false
+name = "Context & Tools"
+
+[meta]
+generated_by = "MemCode Setup"
+_anker = true

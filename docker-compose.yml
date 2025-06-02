@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg15
+    environment:
+      POSTGRES_DB: memcode
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+    command: postgres -c shared_preload_libraries=vector
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  memcode:
+    build: .
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres:password@postgres:5432/memcode
+      - REDIS_URL=redis://redis:6379
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./logs:/app/logs
+    command: chainlit run app/main.py --host 0.0.0.0 --port 8000
+
+volumes:
+  postgres_data:
+  redis_data:
